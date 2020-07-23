@@ -9,9 +9,11 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const Employee = require("./lib/Employee");
+const { type } = require("os");
 
 
-const questions = [
+const manager = [
     {
         type: 'input',
         name: 'welcome',
@@ -37,16 +39,91 @@ const questions = [
         name: 'managerOffice',
         message: `Lastly enter the manager's office number`
     },
-    {
-        type: 'input',
-        name: 'nextSection',
-        message: 'This next section of the prompt will be for Employee information only (Press Enter to continue) '
-    },
 ]
 
-inquirer.prompt(questions).then((answers) => {
+function employees (){
+    inquirer.prompt([
+        {
+            type:'list',
+            name:'roles',
+            message:`Select the role of the employee`,
+            choices: ['Intern','Engineer']
+        },
+        {
+            type:'input',
+            name:'employeeName',
+            message:'What is the employees name?'
+        },
+        {
+            type:'input',
+            name:'employeeId',
+            message:'Please enter employees ID'
+        },
+        {
+            type:'input',
+            name:'employeeEmail',
+            message:'Enter employee E-mail'
+        }
+    ]).then((emprole) => {
+
+        console.log(emprole)
+
+        if(emprole.roles === 'Intern'){
+            inquirer.prompt([
+            {
+            type:'input',
+            name:'school',
+            message:'Please enter the Interns school name'
+            },
+            ]).then((empint) => {
+                console.log(empint)
+                const intern = new Intern(emprole.employeeName, emprole.employeeId, emprole.employeeEmail, empint.school);
+                
+                teamMembers.push(intern);
+
+                reprompt()
+            })
+        }else if(emprole.roles === 'Engineer'){
+            inquirer.prompt([
+            {
+            type:'input',
+            name:'github',
+            message:'Please the Engineers github'
+            },   
+            ]).then((empeng) => {
+                console.log(empeng)
+                reprompt()
+            })
+        }
+        
+    })
+}
+
+function reprompt() {
+    inquirer.prompt([
+        {
+        type:'list',
+        name:'add',
+        message:'Would you like to add another employee?',
+        choices:['yes', 'no']
+        }   
+    ]).then((addemp) => {
+        if(addemp.add === 'yes'){
+            employees()
+        }else{
+            console.log('all set!')
+        }
+
+    })
+   
+}
+
+inquirer.prompt(manager).then((answers) => {
 
     console.log(answers)
+    console.log('This next section will be for Employee informaton only')
+    employees()
+    
 })
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
