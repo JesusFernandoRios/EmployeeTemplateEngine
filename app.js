@@ -12,6 +12,7 @@ const render = require("./lib/htmlRenderer");
 const Employee = require("./lib/Employee");
 const { type } = require("os");
 
+const teamMembers = [];
 
 const manager = [
     {
@@ -21,7 +22,7 @@ const manager = [
     },
     {
         type: 'input',
-        name: 'manager',
+        name: 'name',
         message: 'Please enter the name of the team/project manager'
     },
     {
@@ -92,6 +93,10 @@ function employees (){
             },   
             ]).then((empeng) => {
                 console.log(empeng)
+                const engineer = new Engineer(emprole.employeeName, emprole.employeeId, emprole.employeeEmail, empeng.github)
+
+                teamMembers.push(engineer);
+
                 reprompt()
             })
         }
@@ -112,6 +117,10 @@ function reprompt() {
             employees()
         }else{
             console.log('all set!')
+
+            console.log(teamMembers)
+
+            render(teamMembers)
         }
 
     })
@@ -121,10 +130,16 @@ function reprompt() {
 inquirer.prompt(manager).then((answers) => {
 
     console.log(answers)
+    let manager = new Manager(answers.name, answers.managerId, answers.managerEmail, answers.managerOffice)
+
+    teamMembers.push(manager)
+
     console.log('This next section will be for Employee informaton only')
     employees()
     
 })
+
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
