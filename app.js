@@ -13,11 +13,11 @@ const Employee = require("./lib/Employee");
 const { type } = require("os");
 
 const teamMembers = [];
-
+let title ;
 const manager = [
     {
         type: 'input',
-        name: 'welcome',
+        name: 'team',
         message: 'Welcome! Please enter a name for this team or project'
     },
     {
@@ -120,7 +120,11 @@ function reprompt() {
 
             console.log(teamMembers)
 
-            render(teamMembers)
+            let renderTeam = render(teamMembers)
+
+            fs.writeFile(outputPath, renderTeam, (err)=>{
+                if(err)throw error
+            })
         }
 
     })
@@ -130,14 +134,16 @@ function reprompt() {
 inquirer.prompt(manager).then((answers) => {
 
     console.log(answers)
-    let manager = new Manager(answers.name, answers.managerId, answers.managerEmail, answers.managerOffice)
+    let boss = new Manager(answers.name, answers.managerId, answers.managerEmail, answers.managerOffice)
 
-    teamMembers.push(manager)
+
+    teamMembers.push(boss)
 
     console.log('This next section will be for Employee informaton only')
     employees()
     
 })
+
 
 
 // Write code to use inquirer to gather information about the development team members,
