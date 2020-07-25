@@ -136,7 +136,8 @@ inquirer.prompt(manager).then((answers) => {
     console.log(answers)
     let boss = new Manager(answers.name, answers.managerId, answers.managerEmail, answers.managerOffice)
 
-
+    
+    title.push(answers.team)
     teamMembers.push(boss)
 
     console.log('This next section will be for Employee informaton only')
