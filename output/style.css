@@ -1,0 +1,29 @@
+body{
+    background-color: black;
+}
+
+
+.team-heading {
+    background-color: darkslategray;
+}
+
+.text-center {
+    color: white;
+}
+
+.card {
+    margin: 10px;
+    background-color: darkslategray;
+}
+
+.manager {
+    border: solid 2px red;
+}
+
+.engineer {
+    border: solid 2px blue;
+}
+
+.intern {
+    border: solid 2px yellow;
+}

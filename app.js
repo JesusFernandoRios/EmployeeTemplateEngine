@@ -13,7 +13,7 @@ const Employee = require("./lib/Employee");
 const { type } = require("os");
 
 const teamMembers = [];
-let title ;
+
 const manager = [
     {
         type: 'input',
@@ -137,7 +137,7 @@ inquirer.prompt(manager).then((answers) => {
     let boss = new Manager(answers.name, answers.managerId, answers.managerEmail, answers.managerOffice)
 
     
-    title.push(answers.team)
+    
     teamMembers.push(boss)
 
     console.log('This next section will be for Employee informaton only')
