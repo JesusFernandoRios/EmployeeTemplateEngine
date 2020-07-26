@@ -1,4 +1,8 @@
-# Team Member Generator            
+# Team Member Generator 
+
+[screenshot](example.png)
+
+
 ## License 
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)                                 
 
@@ -16,6 +20,8 @@ Clone or download this repository
         
 ## Usage
 Once Downloaded run npm install to get all depencencies. Once that is all set run app.js using node and follow the prompted instructions.
+
+https://drive.google.com/file/d/1i_DxBW-Z1WuWA1uTJrufUguHQ2dso0Cw/view
         
 ## Contributors
 Jesus Rios
