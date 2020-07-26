@@ -1,6 +1,6 @@
 # Team Member Generator 
 
-[screenshot](example.png)
+![screenshot](example.png)
 
 
 ## License 
